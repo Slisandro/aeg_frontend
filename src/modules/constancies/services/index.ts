@@ -11,4 +11,4 @@ export const createConstancies = (values: FormData) => instanceAxios.post(
 );
 
 export const downloadFile = (id: string) =>
-    (process.env.REACT_APP_API_URL ?? "http://localhost:3000") + "/constancies/download" + id;
+    (process.env.VITE_API_URL ?? "http://localhost:3000") + "/constancies/download" + id;
