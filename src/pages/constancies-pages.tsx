@@ -14,8 +14,11 @@ export default function Constancies() {
     const handleClick = () => setOpen(true);
 
     const handleSubmit = () => {
-        window.open(downloadFile(folio), '_blank');
-        setFolio(undefined);
+        if(folio) {
+            const url = downloadFile(folio);
+            window.open(url, '_blank');
+            setFolio(undefined);
+        }
     };
 
     return (
