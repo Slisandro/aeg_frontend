@@ -12,4 +12,4 @@ export const createConstancies = (values: FormData) => instanceAxios.post(
 
 export const getAllFiles = () => instanceAxios.get("/constancies/all")
 
-export const downloadFile = (id: string) => instanceAxios.get("/constancies/download/" + id);
+export const downloadFile = (id: string) => (import.meta.env.VITE_API_URL ?? "http://localhost:3000") + "/constancies/download/" + id;
