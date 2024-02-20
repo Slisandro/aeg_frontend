@@ -5,21 +5,31 @@ import DialogContainer from "../components/dialog-component";
 import NavBar from "../components/nav-component";
 import CreateConstancy from "../modules/constancies/components/create-constancies-component";
 import { downloadFile } from "../modules/constancies/services";
+import ListConstancies from "../modules/constancies/components/list-courses-component";
+import useGetConstancies from "../modules/constancies/hooks/use-get-constancies"
 
 export default function Constancies() {
     const [open, setOpen] = useState<boolean>(false);
     const [folio, setFolio] = useState<string | undefined>();
+    const { files, loading } = useGetConstancies();
     const cancelButtonRef = useRef(null);
 
     const handleClick = () => setOpen(true);
 
     const handleSubmit = () => {
-        if(folio) {
+        if (folio) {
             const url = downloadFile(folio);
             window.open(url, '_blank');
             setFolio(undefined);
         }
     };
+
+    const handleDownload = (folio: string | undefined) => {
+        if (folio) {
+            const url = downloadFile(folio);
+            window.open(url, '_blank');
+        }
+    }
 
     return (
         <main className="w-full h-full">
@@ -62,7 +72,7 @@ export default function Constancies() {
             <div className="flex justify-end w-full py-4 px-8">
                 <button onClick={handleClick} className="bg-violet-900 text-white px-3 py-2 rounded-md text-sm font-medium hover:bg-violet-800 hover:text-white">+ Crear</button>
             </div>
-            {/* <ListUser /> */}
+            <ListConstancies handleDownload={handleDownload} files={files} loading={loading} />
         </main>
     )
 }

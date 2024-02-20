@@ -25,7 +25,7 @@ const createFormData = (values: any) => {
 const Steps = ({ step }: { step: number }) => {
     if (step === 0) {
         return (
-            <div className="w-11/12 mx-auto my-6">
+            <div className="w-2/3 mx-auto my-6">
                 <div className="bg-gray-200 h-1 flex items-center justify-between">
                     <div className="w-1/4 flex justify-between bg-transparent h-1 items-center relative">
                         <div className="bg-white h-6 w-6 rounded-full shadow flex items-center justify-center -mr-3 relative">
@@ -45,7 +45,7 @@ const Steps = ({ step }: { step: number }) => {
 
     if (step === 1) {
         return (
-            <div className="w-11/12 lg:w-2/6 mx-auto my-6">
+            <div className="w-2/3 mx-auto my-6">
                 <div className="bg-gray-200 h-1 flex items-center justify-between">
                     <div className="w-1/4 flex justify-between bg-indigo-700 h-1 items-center relative">
                         <div className="bg-indigo-700 h-6 w-6 rounded-full shadow flex items-center justify-center">
@@ -71,7 +71,7 @@ const Steps = ({ step }: { step: number }) => {
     }
 
     return (
-        <div className="w-11/12 lg:w-2/6 mx-auto my-6">
+        <div className="w-2/3 mx-auto my-6">
             <div className="bg-gray-200 h-1 flex items-center justify-between">
                 <div className="w-1/4 flex justify-between bg-indigo-700 h-1 items-center relative">
                     <div className="bg-indigo-700 h-6 w-6 rounded-full shadow flex items-center justify-center">
@@ -111,8 +111,10 @@ export default function CreateConstancy(
     const [loadingSubmit, setLoading] = useState(false);
     const { values, errors, handleChange, setFieldValue } = useFormikCreateConstancy();
     const { courses, loading } = useGetCourse();
+    const [editManualCourse, setEditManualCourse] = useState<boolean>(false);
     const [step, setStep] = useState(0);
     const cancelButtonRef = useRef(null);
+    const handleEditCourseManual = () => setEditManualCourse(!editManualCourse)
     const onSubmit = () => {
         setLoading(true)
         const id = toast.loading("Validando información...");
@@ -210,32 +212,43 @@ export default function CreateConstancy(
                                         Curso
                                     </label>
                                     <div className="relative mt-2 rounded-md shadow-sm">
-                                        {!loading && (
-                                            <select 
-                                                id="course"
-                                                name="course"
-                                                onChange={handleChange} 
-                                                className="block w-full rounded-md border-0 py-2 pl-2 pr-4 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                                            >
-                                                <option defaultChecked>Seleccionar curso</option>
-                                                {courses.map(c => (
-                                                    <option 
-                                                        key={c.name} 
-                                                        value={c.name}
+                                        {
+                                            !editManualCourse ?
+                                                (
+                                                    <select
+                                                        id="course"
+                                                        name="course"
+                                                        onChange={handleChange}
+                                                        className="block w-full rounded-md border-0 py-2 pl-2 pr-4 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                                     >
-                                                        {c.name}
-                                                    </option>
-                                                ))}
-                                            </select>
-                                        )}
-                                        {/* <input
-                                            type="text"
-                                            name="course"
-                                            id="course"
-                                            placeholder="John Doe"
-                                            onChange={handleChange}
-                                            value={values.course}
-                                        /> */}
+                                                        <option defaultChecked>Seleccionar curso</option>
+                                                        {!loading && courses.map(c => (
+                                                            <option
+                                                                key={c.name}
+                                                                value={c.name}
+                                                            >
+                                                                {c.name}
+                                                            </option>
+                                                        ))}
+                                                    </select>
+                                                ) : (
+                                                    <input
+                                                        type="text"
+                                                        name="course"
+                                                        id="course"
+                                                        className="block w-full rounded-md border-0 py-1.5 pl-4 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                                                        placeholder="Curso"
+                                                        onChange={handleChange}
+                                                        value={values.course}
+                                                    />
+                                                )
+                                        }
+                                        <button onClick={handleEditCourseManual} className="border-none bg-transparent underline text-xs font-semibold">
+                                            {
+                                                !editManualCourse ? 
+                                                    "Agregar manualmente" : "Listado de curso"
+                                            }
+                                        </button>
                                     </div>
                                     <div className="text-xs text-red-500 ml-1 font-semibold mt-1">{errors.course}</div>
                                 </div>
