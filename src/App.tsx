@@ -7,6 +7,7 @@ import Login from "./pages/login-pages";
 import Users from './pages/users-pages';
 import Constancies from './pages/constancies-pages';
 import Courses from './pages/courses-pages';
+import SearchConstancies from './pages/search-constancies-pages';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
             <Route path="/panel/courses" element={<Courses />} />
             <Route path="/panel/users" element={<Users />} />
           </Route>
+          <Route path="/search-constancies" element={<SearchConstancies />} />
         </Routes>
       </BrowserRouter>
       <ToastContainer />

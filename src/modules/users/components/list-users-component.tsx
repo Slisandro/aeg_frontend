@@ -10,13 +10,13 @@ export default function ListUser(
 
     if (loading) {
         return (
-            <div>Loading</div>
+            <div className="flex items-center justify-center">Cargando...</div>
         )
     }
 
     if (!users.length) {
         return (
-            <div>No hay usuarios</div>
+            <div className="flex items-center justify-center">No hay usuarios</div>
         )
     }
 

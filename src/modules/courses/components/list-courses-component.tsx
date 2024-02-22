@@ -10,13 +10,13 @@ export default function ListCourse(
 
     if (loading) {
         return (
-            <div>Loading</div>
+            <div className="flex items-center justify-center">Cargando...</div>
         )
     }
 
     if (!courses.length) {
         return (
-            <div>No hay usuarios</div>
+            <div className="flex items-center justify-center">No hay cursos</div>
         )
     }
 
