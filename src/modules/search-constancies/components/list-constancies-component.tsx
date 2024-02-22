@@ -33,13 +33,12 @@ export default function ListConstancies({ constancies, loading }: { constancies:
                         <div className="min-w-0 flex-auto w-1/2 max-w-3/4">
                             <p className="text-sm w-full font-semibold uppercase leading-6 text-gray-900">Nombre: {Array.isArray(constancy.name) ? constancy.name[0] : constancy.name}</p>
                             <p className="mt-1 truncate text-xs uppercase leading-5 text-gray-500"> CURP: {Array.isArray(constancy.curp) ? constancy.curp[0] : constancy.curp}</p>
-                            <p className="mt-1 truncate text-xs uppercase leading-5 text-gray-500"> Nro. Folio: {Array.isArray(constancy.invoice) ? constancy.invoice[0] : constancy.invoice}</p>
+                            <p className="mt-1 truncate text-xs uppercase leading-5 text-gray-500 m-0"> Nro. Folio: {Array.isArray(constancy.invoice) ? constancy.invoice[0] : constancy.invoice}</p>
                         </div>
                     </div>
-                    <div className="flex items-center gap-2 w-1/4 justify-end">
-                        <p className="mt-1 truncate text-xs leading-5 text-gray-500">Curso: {Array.isArray(constancy.course) ? constancy.course[0] : constancy.course}</p>
-                        <p className="mt-1 truncate text-xs leading-5 text-gray-500">Institucion: {Array.isArray(constancy.institution) ? constancy.institution[0] : constancy.institution}</p>
-
+                    <div className="flex items-center gap-2 w-1/4 justify-center flex-col">
+                        <p className="mt-1 truncate text-xs leading-5 text-gray-500 m-0">Curso: {Array.isArray(constancy.course) ? constancy.course[0] : constancy.course}</p>
+                        <p className="mt-1 truncate text-xs leading-5 text-gray-500 m-0">Representante: {Array.isArray(constancy.representative) ? constancy.representative[0] : constancy.representative}</p>
                         <p className="mt-1 truncate text-xs leading-5 text-gray-500">Duración: {Array.isArray(constancy.duration) ? constancy.duration[0] : constancy.duration} hrs.</p>
                     </div>
                 </li>
