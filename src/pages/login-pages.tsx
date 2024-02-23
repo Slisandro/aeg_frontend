@@ -6,7 +6,7 @@ export default function Login() {
     return (
         <div className="h-screen w-screen flex flex-col items-center justify-center gap-4">
             <h2 className="text-2xl font-bold text-neutral-900">
-                Panel de Control
+                Acceso a Clientes Institucionales
             </h2>
             <form
                 className="flex flex-col"
