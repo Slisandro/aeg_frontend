@@ -1,6 +1,6 @@
 import { Dialog } from "@headlessui/react";
 import { CheckIcon } from "@heroicons/react/24/outline";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import DialogContainer from "../components/dialog-component";
 import NavBar from "../components/nav-component";
 import CreateConstancy from "../modules/constancies/components/create-constancies-component";
@@ -14,11 +14,13 @@ export default function Constancies() {
     const { files, loading } = useGetConstancies();
     const cancelButtonRef = useRef(null);
 
+    useEffect(() => { }, [folio])
+
     const handleClick = () => setOpen(true);
 
-    const handleSubmit = () => {
+    const handleSubmit = (folio: string) => {
         if (folio) {
-            const url = downloadFile(folio);
+            const url = downloadFile(folio + ".docx");
             window.open(url, '_blank');
             setFolio(undefined);
         }
@@ -49,17 +51,17 @@ export default function Constancies() {
                                     </Dialog.Title>
                                     <div className="mt-2">
                                         <p className="text-sm text-gray-500">
-                                            El archivo de constancias para el folio N° {folio} fue generado exitosamente. Puede descargar su archivo haciendo click en el botón de abajo
+                                            El archivo de constancias fue generado exitosamente. Puede descargar su archivo haciendo click en el botón de abajo
                                         </p>
                                     </div>
                                 </div>
                                 <hr className="mt-4" />
                             </div>
-                            <div className="sm:flex sm:items-center sm:flex-col">
+                            <div className="sm:flex sm:items-center sm:flex-col mt-4">
                                 <button
                                     type="button"
                                     className="inline-flex w-full justify-center rounded-md bg-violet-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-violet-500 sm:ml-3 sm:w-auto disabled:opacity-[.25]"
-                                    onClick={handleSubmit}
+                                    onClick={(_e: any) => handleSubmit(folio)}
                                 >
                                     Descargar
                                 </button>

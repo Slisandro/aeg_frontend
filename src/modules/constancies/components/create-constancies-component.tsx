@@ -125,7 +125,8 @@ export default function CreateConstancy(
                     if (r.status === 201) {
                         toast.update(id, { render: "Archivo generado con éxito", type: "success", isLoading: false, autoClose: 1500 });
                         setOpen(!open);
-                        setFolio(r.data.folio);
+                        setFolio(r.data.title);
+                        // handleSubmit(r.data.folio)
                     }
                 })
                 .catch(() => toast.update(id, { render: "Ocurrió un error", type: "error", isLoading: false, autoClose: 1500 }))
