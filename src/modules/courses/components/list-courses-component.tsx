@@ -30,7 +30,7 @@ export default function ListCourse(
                             <p className="mt-1 truncate text-xs leading-5 text-gray-500">Duración {course.duration}</p>
                         </div>
                     </div>
-                    <div className="flex items-center gap-2 w-1/4">
+                    <div className="flex items-center justify-end gap-2 w-1/4">
                         <button onClick={() => handleEdit(course)} className="rounded-full bg-violet-500 p-2 hover:bg-violet-400">
                             <PencilIcon className="w-4 h-4 text-white" />
                         </button>

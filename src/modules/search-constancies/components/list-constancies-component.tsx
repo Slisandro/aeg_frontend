@@ -14,7 +14,7 @@ export default function ListConstancies({ constancies, loading }: { constancies:
                 <br />
                 <p className="p-0"><b>Por número de folio:</b> Ingrese el número de folio de su documento</p>
                 <br />
-                <p className="p-0">Presioné buscar y obtenga sus resultados al instante.</p>
+                <p className="p-0">Presione buscar y obtenga sus resultados al instante.</p>
             </div>
         )
     }
