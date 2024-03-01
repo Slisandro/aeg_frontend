@@ -8,7 +8,7 @@ export default function ListConstancies({ constancies, loading }: { constancies:
     if (!constancies) {
         return (
             <div className="flex items-center justify-center text-center mt-4 flex-col gap-0 mt-4">
-                <p className="p-0">Seleccioné como desea realizar la búsqueda</p>
+                <p className="p-0">Seleccione como desea realizar la búsqueda</p>
                 <br />
                 <p className="p-0"><b>Por CURP:</b> Introduzca su Clave Única de Registro de Población</p>
                 <br />
