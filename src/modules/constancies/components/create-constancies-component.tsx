@@ -7,9 +7,91 @@ import useGetCourse from "../../courses/hooks/use-get-courses";
 import useFormikCreateConstancy from "../hooks/use-formik-create-constancy";
 import { createConstancies } from "../services";
 
+// constants 
+const AREA_TEMATICAS = [
+    { id: 1, name: "Producción General", number: 1000 },
+    { id: 2, name: "Servicios", number: 2000 },
+    { id: 3, name: "Administración, contabilidad y economía", number: 3000 },
+    { id: 4, name: "Comercialización", number: 4000 },
+    { id: 5, name: "Producción", number: 5000 },
+    { id: 6, name: "Seguridad", number: 6000 },
+    { id: 7, name: "Desarrollo personal y familiar", number: 7000 },
+    { id: 9, name: "Uso de tecnologías de la información y comunicación", number: 8000 },
+    { id: 10, name: "Participación social", number: 9000 },
+];
+
+const CATALOGO_OCUPACIONES = [
+    { id: 1, name: "Cultivo, crianza y aprovechamiento", number: 1 },
+    { id: 2, name: "Agricultura y silvicultura", number: 1.1 },
+    { id: 3, name: "Ganadería", number: 1.2 },
+    { id: 4, name: "Pesca y acuacultura", number: 1.3 },
+    { id: 5, name: "Extracción y suministro", number: 2 },
+    { id: 6, name: "Exploración", number: 2.1 },
+    { id: 7, name: "Extracción", number: 2.2 },
+    { id: 8, name: "Refinación y beneficio", number: 2.3 },
+    { id: 9, name: "Provisión de energía", number: 2.4 },
+    { id: 10, name: "Provisión de agua", number: 2.5 },
+    { id: 11, name: "Construcción", number: 3 },
+    { id: 12, name: "Planeación y dirección de obras", number: 3.1 },
+    { id: 13, name: "Edificación y urbanización", number: 3.2 },
+    { id: 14, name: "Acabado", number: 3.3 },
+    { id: 15, name: "Instalación y mantenimiento", number: 3.4 },
+    { id: 16, name: "Tecnología", number: 4 },
+    { id: 17, name: "Mecánica", number: 4.1 },
+    { id: 18, name: "Electricidad", number: 4.2 },
+    { id: 19, name: "Electrónica", number: 4.3 },
+    { id: 20, name: "Informática", number: 4.4 },
+    { id: 21, name: "Telecomunicaciones", number: 4.5 },
+    { id: 22, name: "Procesos industriales", number: 4.6 },
+    { id: 23, name: "Procesamiento y fabricación", number: 5 },
+    { id: 24, name: "Minerales no metálicos", number: 5.1 },
+    { id: 25, name: "Metales", number: 5.2 },
+    { id: 26, name: "Alimentos y bebidas", number: 5.3 },
+    { id: 27, name: "Textiles y prendas de vestir", number: 5.4 },
+    { id: 28, name: "Materia orgánica", number: 5.5 },
+    { id: 29, name: "Productos químicos", number: 5.6 },
+    { id: 30, name: "Productos metálicos y de hule y plástico", number: 5.7 },
+    { id: 31, name: "Productos eléctricos y electrónicos", number: 5.8 },
+    { id: 32, name: "Productos impresos", number: 5.9 },
+    { id: 33, name: "Transporte", number: 6 },
+    { id: 34, name: "Ferroviario", number: 6.1 },
+    { id: 35, name: "Autotransporte", number: 6.2 },
+    { id: 36, name: "Aéreo", number: 6.3 },
+    { id: 37, name: "Marítimo y fluvial", number: 6.4 },
+    { id: 38, name: "Servicios de apoyo", number: 6.5 },
+    { id: 39, name: "Provisión de bienes y servicios", number: 7 },
+    { id: 40, name: "Comercio", number: 7.1 },
+    { id: 41, name: "Alimentación y hospedaje", number: 7.2 },
+    { id: 42, name: "Turismo", number: 7.3 },
+    { id: 43, name: "Deporte y esparcimiento", number: 7.4 },
+    { id: 44, name: "Servicios personales", number: 7.5 },
+    { id: 45, name: "Reparación de artículos de uso doméstico y personal", number: 7.6 },
+    { id: 46, name: "Limpieza", number: 7.7 },
+    { id: 47, name: "Gestión y soporte administrativo", number: 8 },
+    { id: 48, name: "Bolsa, banca y seguros", number: 8.1 },
+    { id: 49, name: "Administración", number: 8.2 },
+    { id: 50, name: "Servicios legales", number: 8.3 },
+    { id: 51, name: "Salud y protección social", number: 9 },
+    { id: 52, name: "Servicios médicos", number: 9.1 },
+    { id: 53, name: "Inspección sanitaria y del medio ambiente", number: 9.2 },
+    { id: 54, name: "Seguridad social", number: 9.3 },
+    { id: 55, name: "Protección de bienes y/o personas", number: 9.4 },
+    { id: 56, name: "Comunicación", number: 10 },
+    { id: 57, name: "Publicación", number: 10.1 },
+    { id: 58, name: "Radio, cine, televisión y teatro", number: 10.2 },
+    { id: 59, name: "Interpretación artística", number: 10.3 },
+    { id: 60, name: "Traducción e interpretación lingüística", number: 10.4 },
+    { id: 61, name: "Publicidad, propaganda y relaciones públicas", number: 10.5 },
+    { id: 62, name: "Desarrollo y extensión del conocimiento", number: 11 },
+    { id: 63, name: "Investigación", number: 11.1 },
+    { id: 64, name: "Enseñanza", number: 11.2 },
+    { id: 65, name: "Difusión cultural", number: 11.3 },
+
+];
+
 const createFormData = (values: any) => {
     const formData = new FormData();
-
+    
     formData.append("archivoExcel", values.file);
     formData.append("institucion", values.name_institution);
     formData.append("representante", values.name_representative);
@@ -17,10 +99,12 @@ const createFormData = (values: any) => {
     formData.append("curso", values.course);
     formData.append("inicio_curso", values.date_init);
     formData.append("fin_curso", values.date_finish);
+    formData.append("area_tematica", values.area_tematica);
+    formData.append("catalogo_ocupaciones", values.catalogo_ocupaciones);
     formData.append("duracion_hrs", String(values.duration));
 
     return formData;
-}
+};
 
 const Steps = ({ step }: { step: number }) => {
     if (step === 0) {
@@ -246,7 +330,7 @@ export default function CreateConstancy(
                                         }
                                         <button onClick={handleEditCourseManual} className="border-none bg-transparent underline text-xs font-semibold">
                                             {
-                                                !editManualCourse ? 
+                                                !editManualCourse ?
                                                     "Agregar manualmente" : "Listado de curso"
                                             }
                                         </button>
@@ -269,6 +353,48 @@ export default function CreateConstancy(
                                         />
                                     </div>
                                     <div className="text-xs text-red-500 ml-1 font-semibold mt-1">{errors.duration}</div>
+                                </div>
+                                <div className="mx-4 my-2 w-full">
+                                    <label htmlFor="area_tematica" className="block text-sm font-medium leading-6 text-gray-900">
+                                        Área temática
+                                    </label>
+                                    <select
+                                        id="area_tematica"
+                                        name="area_tematica"
+                                        onChange={handleChange}
+                                        className="block w-full rounded-md border-0 py-2 pl-2 pr-4 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                                    >
+                                        <option defaultChecked>Seleccionar área temática</option>
+                                        {AREA_TEMATICAS.map(c => (
+                                            <option
+                                                key={c.id}
+                                                value={c.number}
+                                            >
+                                                {c.number + " - " + c.name}
+                                            </option>
+                                        ))}
+                                    </select>
+                                </div>
+                                <div className="mx-4 my-2 w-full">
+                                    <label htmlFor="catalogo_ocupaciones" className="block text-sm font-medium leading-6 text-gray-900">
+                                        Cátalogo de Ocupaciones
+                                    </label>
+                                    <select
+                                        id="catalogo_ocupaciones"
+                                        name="catalogo_ocupaciones"
+                                        onChange={handleChange}
+                                        className="block w-full rounded-md border-0 py-2 pl-2 pr-4 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                                    >
+                                        <option defaultChecked>Seleccionar cátalogo de ocupaciones</option>
+                                        {CATALOGO_OCUPACIONES.map(c => (
+                                            <option
+                                                key={c.id}
+                                                value={c.number}
+                                            >
+                                                {c.number + " - " + c.name}
+                                            </option>
+                                        ))}
+                                    </select>
                                 </div>
                             </>
                         ) : step === 2 ? (

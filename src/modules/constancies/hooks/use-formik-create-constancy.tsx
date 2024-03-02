@@ -9,6 +9,8 @@ export interface Constancy {
     date_finish: string,
     course: string,
     duration: number,
+    catalogo_ocupaciones: string,
+    area_tematica: string,
     file?: File
 }
 
@@ -21,6 +23,8 @@ export default function useFormikCreateConstancie() {
             date_init: "",
             date_finish: "",
             course: "",
+            catalogo_ocupaciones: "",
+            area_tematica: "",
             duration: 0,
             file: undefined
         },
@@ -47,7 +51,9 @@ export default function useFormikCreateConstancie() {
                 date_init?: string,
                 date_finish?: string,
                 course?: string,
-                duration?: string,
+                duration?: string,   
+                catalogo_ocupaciones?: string,
+                area_tematica?: string,
                 file?: string
             } = {};
 
@@ -71,6 +77,14 @@ export default function useFormikCreateConstancie() {
                 errors.date_finish = "Este campo es obligatorio"
             }
             
+            if (!values.catalogo_ocupaciones) {
+                errors.catalogo_ocupaciones = "Este campo es obligatorio"
+            }
+
+            if (!values.area_tematica) {
+                errors.area_tematica = "Este campo es obligatorio"
+            }
+
             if (!values.course) {
                 errors.course = "Este campo es obligatorio"
             }
