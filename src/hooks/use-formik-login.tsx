@@ -23,9 +23,15 @@ export default function useFormikLogin() {
                 .then((r) => {
                     login(r.data.token);
                     toast.update(id, { render: "Acceso correcto", type: "success", isLoading: false, autoClose: 1500 });
-                    setTimeout(() => {
-                        navigate("/panel/constancies")
-                    }, 2000);
+                    if(r.data.role === "haktek") {
+                        setTimeout(() => {
+                            navigate("/haktek/constancies")
+                        }, 2000);
+                    } else {
+                        setTimeout(() => {
+                            navigate("/panel/constancies")
+                        }, 2000);
+                    }
                 })
                 .catch(() => {
                     toast.update(id, { render: "Error al ingresar", type: "error", isLoading: false, autoClose: 1500 });
