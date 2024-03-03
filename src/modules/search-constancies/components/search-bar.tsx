@@ -22,9 +22,9 @@ export default function SearchBarComponent({ setResults, setLoading }: { setResu
     }
 
     return (
-        <div className="relative w-3/5 mx-auto">
-            <form className="max-w-lg mx-auto" onSubmit={handleSubmit}>
-                <div className="flex">
+        <div className="relative w-full mx-auto">
+            <form className="mx-auto" onSubmit={handleSubmit}>
+                <div className="flex w-full">
                     <button
                         id="dropdown-button"
                         data-dropdown-toggle="dropdown"
